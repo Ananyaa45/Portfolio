@@ -1,0 +1,451 @@
+.heroContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-color: #060608;
+  color: #ffffff;
+  z-index: 2;
+}
+
+/* 1. Ambient Background Video */
+.ambientWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ambientVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(45px);
+  transform: scale(1.15); /* Scale up slightly to prevent white edges from blur */
+  opacity: 0.35;
+}
+
+/* 2. Gradient Overlays */
+.gradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 6, 8, 0.8) 0%,
+    rgba(6, 6, 8, 0.4) 30%,
+    rgba(6, 6, 8, 0.5) 70%,
+    rgba(6, 6, 8, 0.95) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.radialVignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    transparent 20%,
+    rgba(6, 6, 8, 0.7) 80%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 3. Grid Layout */
+.contentGrid {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Column - Text */
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: #ff7828; /* Warm orange tint */
+  margin-bottom: 15px;
+  text-shadow: 0 2px 10px rgba(255, 120, 40, 0.3);
+}
+
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.title span:last-child {
+  background: linear-gradient(135deg, #ffffff 30%, #ff8c42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 540px;
+  margin-bottom: 35px;
+}
+
+/* Media Controls */
+.controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.glassButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 14px 26px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.controlIcon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.glassButton:hover {
+  background: rgba(255, 120, 40, 0.15);
+  border-color: rgba(255, 120, 40, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255, 120, 40, 0.15);
+}
+
+.glassButton:hover .controlIcon {
+  transform: scale(1.1);
+}
+
+.glassButton:active {
+  transform: translateY(0);
+}
+
+/* Right Column - Video Card */
+.videoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #121216;
+  border: 1.5px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 120, 40, 0.08); /* warm ambient glow */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.videoWrapper:hover {
+  transform: scale(1.02) rotateY(-2deg) rotateX(1deg);
+  border-color: rgba(255, 120, 40, 0.3);
+  box-shadow: 
+    0 35px 60px -10px rgba(0, 0, 0, 0.6),
+    0 0 50px rgba(255, 120, 40, 0.15);
+}
+
+.foregroundVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.videoBorderGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  box-shadow: inset 0 0 20px rgba(255, 120, 40, 0.1);
+  z-index: 2;
+}
+
+/* 4. Tap for Sound Badge */
+.soundHint {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(255, 120, 40, 0.15);
+  border: 1.5px solid rgba(255, 120, 40, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ff9d63;
+  border-radius: 50px;
+  padding: 10px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(255, 120, 40, 0.15);
+  animation: floatBadge 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.soundHint:hover {
+  background: rgba(255, 120, 40, 0.25);
+  transform: scale(1.05);
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  background-color: #ff7828;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+.pulseDot::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #ff7828;
+  animation: dotPulse 1.8s ease-out infinite;
+}
+
+/* 5. Scroll Indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.5s ease;
+}
+
+.scrollText {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+
+.scrollMouse {
+  width: 20px;
+  height: 32px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  position: relative;
+  transition: border-color 0.3s;
+}
+
+.scrollWheel {
+  width: 3px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheelPulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.scrollIndicator:hover .scrollText {
+  color: #ff7828;
+}
+
+.scrollIndicator:hover .scrollMouse {
+  border-color: #ff7828;
+}
+
+/* Keyframe Animations */
+@keyframes floatBadge {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
+@keyframes scrollWheelPulse {
+  0% {
+    top: 6px;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    top: 18px;
+    opacity: 0.2;
+  }
+  100% {
+    top: 18px;
+    opacity: 0;
+  }
+}
+
+/* 6. Responsive Design */
+@media (max-width: 1024px) {
+  .contentGrid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .heroContainer {
+    height: auto;
+    min-height: 100vh;
+    padding: 120px 0 80px 0;
+    align-items: center;
+  }
+  
+  .contentGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .textContainer {
+    align-items: center;
+  }
+
+  .title {
+    align-items: center;
+  }
+
+  .subtitle {
+    margin: 0 auto 30px auto;
+  }
+
+  .controls {
+    justify-content: center;
+  }
+
+  .videoContainer {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  .soundHint {
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    animation: floatBadgeMobile 3s ease-in-out infinite;
+  }
+
+  .soundHint:hover {
+    transform: translateX(50%) scale(1.05);
+  }
+}
+
+@keyframes floatBadgeMobile {
+  0%, 100% {
+    transform: translateX(50%) translateY(0);
+  }
+  50% {
+    transform: translateX(50%) translateY(-6px);
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContainer {
+    padding-top: 100px;
+  }
+  .title {
+    font-size: 2.8rem;
+  }
+  .controls {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+  .glassButton {
+    justify-content: center;
+    width: 100%;
+  }
+  .soundHint {
+    width: calc(100% - 40px);
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
