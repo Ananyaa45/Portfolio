@@ -121,13 +121,15 @@ export default function VideoIntro() {
       <div className={styles.ambientWrapper}>
         <video
           ref={bgVideoRef}
-          src={VIDEO_SOURCE}
           className={styles.ambientVideo}
           autoPlay
           loop
           muted
           playsInline
-        />
+        >
+          <source src="/developer.mp4" type="video/mp4" />
+          <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* 2. Gradient Overlay for Readability */}
@@ -178,14 +180,16 @@ export default function VideoIntro() {
           <div className={styles.videoWrapper}>
             <video
               ref={videoRef}
-              src={VIDEO_SOURCE}
               className={styles.foregroundVideo}
               autoPlay
               loop
               muted
               playsInline
               onClick={togglePlay}
-            />
+            >
+              <source src="/developer.mp4" type="video/mp4" />
+              <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+            </video>
             {/* Ambient video subtle border glow */}
             <div className={styles.videoBorderGlow} />
           </div>
