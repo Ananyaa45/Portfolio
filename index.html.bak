@@ -42,7 +42,7 @@
                 </div>
                 <div class="about-col-2">
                     <h2>About Me</h2>
-                    <p>I am a passionate UI/UX designer and frontend developer with a strong interest in machine learning. I enjoy creating intuitive and visually appealing interfaces while also building functional web applications.</p>
+                    <p>I am a passionate UI/UX designer and fullstack developer with a strong interest in machine learning. I enjoy creating intuitive and visually appealing interfaces while also building functional web applications.</p>
                     <div class="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('experience')">Experience</p>
