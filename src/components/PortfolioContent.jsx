@@ -75,7 +75,6 @@ export default function PortfolioContent() {
             <div className={styles.aboutCol2}>
               <h2 className={styles.sectionTitle}>About Me</h2>
               <p className={styles.bioText}>
-                I am a passionate UI/UX designer and fullstack developer with a strong interest in machine learning. I enjoy creating intuitive and visually appealing interfaces while also building functional web applications.
               </p>
 
               {/* Tabs Headers */}
@@ -128,9 +127,9 @@ export default function PortfolioContent() {
                   <div className={`${styles.tabContents} ${styles.fadeIn}`}>
                     <ul className={styles.list}>
                       <li>
-                        <span>Learner</span>
+                        <span>Aspiring Full-Stack Engineer</span>
                         <br />
-                        Beginning My Journey As a Frontend Developer
+                        On my journey to becoming a skilled full-stack developer — bridging the gap between interactive client-side interfaces and robust backend architectures.
                       </li>
                     </ul>
                   </div>

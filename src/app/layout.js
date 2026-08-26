@@ -15,8 +15,8 @@ const outfit = Outfit({
 
 export const metadata = {
   title: "Ananyaa Maity | Portfolio",
-  description: "Personal portfolio of Ananyaa Maity - UI/UX Designer, Frontend Developer, and ML Model Builder studying at IIEST Shibpur.",
-  keywords: ["Ananyaa Maity", "Portfolio", "UI/UX Designer", "Frontend Developer", "Machine Learning", "IIEST Shibpur"],
+  description: "Personal portfolio of Ananyaa Maity - UI/UX Designer, Full-Stack Developer, and ML Model Builder studying at IIEST Shibpur.",
+  keywords: ["Ananyaa Maity", "Portfolio", "UI/UX Designer", "Full-Stack Developer", "Machine Learning", "IIEST Shibpur"],
 };
 
 export default function RootLayout({ children }) {
